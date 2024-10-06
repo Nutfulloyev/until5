@@ -1,0 +1,35 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:untitled5/class/drover_class.dart';
+import '../class/app_bar_class.dart';
+import '../class/floating_actian_class.dart';
+import 'nastroyka_page.dart';
+
+
+class ArganizarsiyaPage extends StatefulWidget {
+  static const String id = "arganiz_page";
+
+  const ArganizarsiyaPage({super.key});
+
+  @override
+  State<ArganizarsiyaPage> createState() => _ArganizarsiyaPageState();
+}
+
+class _ArganizarsiyaPageState extends State<ArganizarsiyaPage> {
+  AppBarClass appBarClass=AppBarClass();
+  DrawerClass drawerClass=DrawerClass();
+  FloatingActianClass floatingActianClass=FloatingActianClass();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: appBarClass
+      ),
+      drawer: Drawer(
+        child: drawerClass,
+      ),
+      floatingActionButton: floatingActianClass,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+    );
+  }
+}
