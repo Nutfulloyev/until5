@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled5/pages/agregatsiya-page.dart';
 import 'package:untitled5/pages/dacument_page.dart';
-import 'package:untitled5/pages/gismit_page.dart';
+import 'package:untitled5/pages/spravochnik_pages/gismit_page.dart';
 import 'package:untitled5/pages/home_page.dart';
-import 'package:untitled5/pages/kontragent_page.dart';
+import 'package:untitled5/pages/spravochnik_pages/kontragent_page.dart';
 import 'package:untitled5/pages/nanisenya_page.dart';
 import 'package:untitled5/pages/nastroyka_page.dart';
-import 'package:untitled5/pages/nomenklatura_page.dart';
-import 'package:untitled5/pages/organizatsiaya_page.dart';
+import 'package:untitled5/pages/spravochnik_pages/nomeklatura_pages/nomenklatura_page.dart';
+import 'package:untitled5/pages/spravochnik_pages/organizatsiaya_page.dart';
 import 'package:untitled5/pages/otgruzka_page.dart';
 import 'package:untitled5/pages/scan_page.dart';
 import 'package:untitled5/pages/sing_in_page.dart';
 import 'package:untitled5/pages/sing_up_page.dart';
 import 'package:untitled5/pages/spisani_page.dart';
-import 'package:untitled5/pages/spravochnik_page.dart';
+import 'package:untitled5/pages/spravochnik_pages/spravochnik_page.dart';
 import 'package:untitled5/pages/zakas_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {

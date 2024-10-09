@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled5/pages/gismit_page.dart';
-import 'package:untitled5/pages/kontragent_page.dart';
-import 'package:untitled5/pages/nomenklatura_page.dart';
-import 'package:untitled5/pages/organizatsiaya_page.dart';
+import 'package:untitled5/pages/spravochnik_pages/gismit_page.dart';
+import 'package:untitled5/pages/spravochnik_pages/kontragent_page.dart';
+import 'package:untitled5/pages/spravochnik_pages/nomeklatura_pages/nomenklatura_page.dart';
+import 'package:untitled5/pages/spravochnik_pages/organizatsiaya_page.dart';
 import '../pages/agregatsiya-page.dart';
 import '../pages/dacument_page.dart';
 import '../pages/home_page.dart';

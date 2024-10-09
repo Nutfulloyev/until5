@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../class/app_bar_class.dart';
-import '../class/drover_class.dart';
-import '../class/floating_actian_class.dart';
-import 'nastroyka_page.dart';
+import '../../class/app_bar_class.dart';
+import '../../class/drover_class.dart';
+import '../../class/floating_actian_class.dart';
+import '../nastroyka_page.dart';
 
 
 class SpravochnicPage extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled5/class/app_bar_class.dart';
 import 'package:untitled5/class/drover_class.dart';
 
-import '../class/floating_actian_class.dart';
+import '../../class/floating_actian_class.dart';
 
 class KontragentPage extends StatefulWidget {
   static const String id = "kontragent_page";
