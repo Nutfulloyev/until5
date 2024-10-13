@@ -25,6 +25,9 @@ class _DrawerClassState extends State<DrawerClass> {
   bool _isExpanded = false;
   @override
   Widget build(BuildContext context) {
+    Color textColor = Theme.of(context).brightness == Brightness.dark
+        ? Colors.black // Qorong'i rejimda rang
+        : Colors.white;
     return ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
@@ -60,6 +63,7 @@ class _DrawerClassState extends State<DrawerClass> {
                     },
                     children: [
                       ExpansionPanel(
+                        backgroundColor: textColor,
                         headerBuilder: (context, isExpanded) {
                           return const ListTile(
                               title: Row(
@@ -190,7 +194,6 @@ class _DrawerClassState extends State<DrawerClass> {
                                 ),
                               ),
                             ),
-
                           ],
                         ),
                         isExpanded: _isExpanded,

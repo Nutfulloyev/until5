@@ -25,16 +25,19 @@ class _NameklaturaPageState extends State<NameklaturaPage> {
 
   @override
   Widget build(BuildContext context) {
+   Color textColor = Theme.of(context).brightness == Brightness.dark
+        ? Colors.black
+        : Colors.white;
     return DefaultTabController(
       length: 4,
       child: Scaffold(
         appBar: AppBar(
           title: appBarClass,
           bottom:  TabBar(
-            dividerColor: Colors.white,
+            dividerColor: textColor,
             tabAlignment: TabAlignment.start,
             padding: EdgeInsets.zero,
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             isScrollable: true,
             labelColor: Colors.deepPurple,
             indicatorColor: Colors.transparent,

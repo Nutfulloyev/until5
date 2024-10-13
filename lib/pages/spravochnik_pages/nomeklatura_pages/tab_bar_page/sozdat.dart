@@ -1,15 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:untitled5/class/text_fild_number_class.dart';
 
-class SozdatPage extends ConsumerWidget {
-  static const String id = "sozdat_pagee";
+import '../../../../class/list_class.dart';
+import '../../../../class/text_class.dart';
+import '../../../../class/text_count_class.dart';
+
+class SozdatPage extends StatefulWidget {
+  static const String id = "sozdat_pageee";
 
   const SozdatPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<SozdatPage> createState() => _SozdatPageState();
+}
+
+class _SozdatPageState extends State<SozdatPage> {
+
+  bool _isAlcoholChecked = false;
+  bool _isExciseChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    ListClass listClass = ListClass();
     double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -17,31 +32,20 @@ class SozdatPage extends ConsumerWidget {
           child: Column(
             children: [
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Тип товара",
-                  ),
-                ),
+              TextClass(
+                items: listClass.productItems,
+                text: 'Тип товара',
+                initialSelectedItem: 'Тип товара',
               ),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Тип упавковки товара",
-                  ),
-                ),
-              ),
+              TextClass(
+                  items: listClass.productItems1,
+                  text: "Тип упаковки товара",
+                  initialSelectedItem: "Тип упаковки товара"),
               const SizedBox(
                 height: 15,
               ),
@@ -58,107 +62,122 @@ class SozdatPage extends ConsumerWidget {
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "GTIN",
-                  ),
-                ),
-              ),
+              const TextCountClass(maxLength: 14, labelText: "GTIN"),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Срок годности в днях",
-                  ),
-                ),
-              ),
+              const FildNumberClass(labelText: "Срок годности в днях"),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Количество в упаковке",
-                  ),
-                ),
-              ),
+              const FildNumberClass(labelText: "Количество в упаковке"),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Код ТН ВЭД",
-                  ),
-                ),
-              ),
+              const TextCountClass(maxLength: 10, labelText: "Код ТН ВЭД"),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "ИКПУ",
-                  ),
-                ),
-              ),
+              const TextCountClass(maxLength: 17, labelText: "ИКПУ"),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
+              Container(
                 width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Единица измерения",
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Реквизиты:",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    const Text(
+                      "Алкоголь",
+                      style: TextStyle(fontSize: 13),
+                    ),
+                    Checkbox(
+                      value: _isAlcoholChecked,
+                      activeColor: Colors.blue,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _isAlcoholChecked = value ?? false;
+                        });
+                      },
+                    ),
+                    const Text(
+                      "Подакцизный",
+                      style: TextStyle(fontSize: 13),
+                    ),
+                    Checkbox(
+                      value: _isExciseChecked,
+                      activeColor: Colors.blue,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _isExciseChecked = value ?? false;
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
+              if (_isAlcoholChecked)
+                const Column(
+                  children: [
+                    FildNumberClass(labelText: "Код вида алкогольной продукции"),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    FildNumberClass(labelText: "Код алкогольной продукции:"),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    FildNumberClass(labelText: "Емкость тары(мл)"),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    FildNumberClass(labelText: "Крепкость"),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    FildNumberClass(labelText: "ИНН Производителя алкоголя"),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    FildNumberClass(labelText: "КПП Производителя алкоголя"),
+                  ],
+                ),
+              if (_isExciseChecked)
+                const Column(
+                  children: [
+                    SizedBox(height: 15,),
+                    FildNumberClass(labelText: "Ставка акциза")
+                  ],
+                ),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Происхождение товара",
-                  ),
-                ),
-              ),
+              TextClass(
+                  items: listClass.productItem2,
+                  text: "Единица измерения",
+                  initialSelectedItem: "Единица измерения"),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "НДС",
-                  ),
-                ),
+              TextClass(
+                  items: listClass.productItem3,
+                  text: "Происхождение товара",
+                  initialSelectedItem: "Происхождение товара"),
+              const SizedBox(
+                height: 15,
               ),
+              TextClass(
+                  items: listClass.productItem4,
+                  text: "НДС",
+                  initialSelectedItem: "НДС"),
               const SizedBox(
                 height: 15,
               ),
@@ -175,55 +194,19 @@ class SozdatPage extends ConsumerWidget {
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Вес",
-                  ),
-                ),
-              ),
+              const FildNumberClass(labelText: "Вес"),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Мин вес",
-                  ),
-                ),
-              ),
+              const FildNumberClass(labelText: "Мин вес"),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Макс вес",
-                  ),
-                ),
-              ),
+              const FildNumberClass(labelText: "Макс вес"),
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
-                height: 50,
-                width: screenWidth * 0.9,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Цена без НДЦ",
-                  ),
-                ),
-              ),
+              const FildNumberClass(labelText: "Цена без НДЦ"),
               const SizedBox(
                 height: 15,
               ),
@@ -232,9 +215,8 @@ class SozdatPage extends ConsumerWidget {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(screenWidth * 0.4, 50),
-                      backgroundColor: Colors.white
-                    ),
+                        minimumSize: Size(screenWidth * 0.4, 50),
+                        backgroundColor: Colors.white),
                     onPressed: () {},
                     child: const Text(
                       "отменить",
@@ -246,9 +228,8 @@ class SozdatPage extends ConsumerWidget {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(screenWidth * 0.4, 50),
-                      backgroundColor: Colors.green
-                    ),
+                        minimumSize: Size(screenWidth * 0.4, 50),
+                        backgroundColor: Colors.green),
                     onPressed: () {},
                     child: const Text(
                       "создать",
